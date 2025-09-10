@@ -24,6 +24,10 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/bankdb
       SPRING_DATASOURCE_USERNAME: bankuser
       SPRING_DATASOURCE_PASSWORD: bankpass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_DATASOURCE_HIKARI_INITIALIZATION_FAIL_TIMEOUT: 60000
       JWT_SECRET: s3yEv@nS-Sup3r-L0ng-Secret-Key-2025!$%#@
     depends_on:
       - db
