@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: bank-db
+    restart: always
+    environment:
+      POSTGRES_DB: bankdb
+      POSTGRES_USER: bankuser
+      POSTGRES_PASSWORD: bankpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: bank-app
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/bankdb
+      SPRING_DATASOURCE_USERNAME: bankuser
+      SPRING_DATASOURCE_PASSWORD: bankpass
+      JWT_SECRET: s3yEv@nS-Sup3r-L0ng-Secret-Key-2025!$%#@
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
